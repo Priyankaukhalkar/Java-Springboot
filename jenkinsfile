@@ -20,7 +20,7 @@ pipeline {
         }
          stage('code analysis') {
             steps {
-              withSonarQubeEnv('sonar-server') {
+              withSonarQubeEnv('sonarqube') {
                sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Java-Springboot \
                -Dsonar.java.binaries=. \
                -Dsonar.projectKey=Java-Springboot'''
@@ -45,8 +45,8 @@ pipeline {
             steps {
              script {
                 withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                    sh 'docker tag ci-cd sushmagowda321/dev:1.0'
-                    sh 'docker push sushmagowda321/dev:1.0'
+                    sh 'docker tag ci-cd priyanka245/dev:1.0'
+                    sh 'docker push priyanka245/dev:1.0'
                   }
               }
             }
